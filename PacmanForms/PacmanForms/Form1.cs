@@ -14,8 +14,6 @@ namespace PacmanForms
     {
         Pacman pacman;
         Graphics g;
-        Maze m;
-        Rectangle[] recs;
 
         public Form1()
         {
@@ -23,16 +21,15 @@ namespace PacmanForms
             this.BackColor = Color.Black;
 
             pacman = new Pacman();
-            m = new Maze();
-            timer1.Interval = 20;
+            
+            timer1.Interval = 10;
             timer1.Enabled = true;
             g = this.CreateGraphics();
-
-            recs = m.getMaze();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
+            CheckBorders();
             pacman.Move();
             Refresh();
             g.DrawImage(pacman.GetPacmanImg(), pacman.GetRect());
@@ -41,9 +38,6 @@ namespace PacmanForms
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            for (int i = 0; i < recs.Length; i++)
-                g.DrawRectangle(Pens.Blue, recs[i]);
-
             g.DrawImage(pacman.GetPacmanImg(), pacman.GetRect());
         }
 
@@ -101,7 +95,12 @@ namespace PacmanForms
             //g.DrawImage(pacman.GetPacmanImg(), pacman.GetRect());
         }
 
+        private void CheckBorders()
+        {
+            if ((pacman.GetRect().X >= this.ClientSize.Width - pacman.GetPacmanImg().Width && pacman.GetVectorX() > 0)|| (pacman.GetRect().X <= 0 && pacman.GetVectorX() < 0)) pacman.SetVectorX(0);
+            if ((pacman.GetRect().Y >= this.ClientSize.Height - pacman.GetPacmanImg().Height && pacman.GetVectorY() < 0) || (pacman.GetRect().Y <= 0 && pacman.GetVectorY() > 0)) pacman.SetVectorY(0);
 
+        }
 
         //private bool checkBound()
         //{
