@@ -16,16 +16,16 @@ namespace PacmanForms
         {
             walls = new Rectangle[5];
             walls[0] = new Rectangle(0, 10, 20, 70);
-            walls[1] = new Rectangle(0, 10, 20, 70);
-            walls[2] = new Rectangle(0, 10, 70, 20);
-            walls[3] = new Rectangle(0, 10, 70, 20);
-            walls[4] = new Rectangle(0, 10, 20, 20);
+            walls[1] = new Rectangle(300, 120, 20, 70);
+            walls[2] = new Rectangle(40, 180, 70, 20);
+            walls[3] = new Rectangle(250, 110, 70, 10);
+            walls[4] = new Rectangle(80, 300, 20, 20);
 
         }
 
-        public void drawMaze(Rectangle client)
+        public Rectangle[] getMaze()
         {
-            
+            return walls;
         }
     }
 }
