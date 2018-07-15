@@ -103,17 +103,23 @@ namespace PacmanForms
 
         private void CheckBorders()
         {
-            if ((pacman.GetRect().X >= this.ClientSize.Width - pacman.GetPacmanImg().Width && pacman.GetVectorX() > 0) || (pacman.GetRect().X <= 0 && pacman.GetVectorX() < 0))
+            if ((pacman.GetRect().Right >= this.ClientSize.Width && pacman.GetVectorX() > 0) || (pacman.GetRect().X <= 0 && pacman.GetVectorX() < 0))
             {
                 pacman.SetVectorX(0);
                 return;
             }
-            if ((pacman.GetRect().Y >= this.ClientSize.Height - pacman.GetPacmanImg().Height && pacman.GetVectorY() < 0) || (pacman.GetRect().Y <= 0 && pacman.GetVectorY() > 0))
+            if ((pacman.GetRect().Top >= this.ClientSize.Height && pacman.GetVectorY() < 0) || (pacman.GetRect().Y <= 0 && pacman.GetVectorY() > 0))
             {
                 pacman.SetVectorY(0);
                 return;
             }
-            //if((pacman.GetRect().Y >= ))
+
+            if(maze[((pacman.GetRect().X / 21 )+ pacman.GetVectorX()), ((pacman.GetRect().Y / 21) + pacman.GetVectorY())] == 1)
+            {
+                pacman.SetVectorX(0);
+                pacman.SetVectorY(0);
+                return;
+            }
         }
 
         private void timer2_Tick(object sender, EventArgs e)
