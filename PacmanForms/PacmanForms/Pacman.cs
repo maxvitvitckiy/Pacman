@@ -40,6 +40,11 @@ namespace PacmanForms
         {
             return pacmanRectangle.Y;
         }
-        public int Vector{ get; set; }
+        
+        public void SetVector(int[] value)
+        {
+            vector[0] = value[0];
+            vector[1] = value[1];
+        }
     }
 }

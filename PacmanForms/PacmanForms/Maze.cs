@@ -14,10 +14,6 @@ namespace PacmanForms
         {
             pacman = new Pacman();
         }
-
-        public void CheckBound()
-        {
-            if(pacman.getX < this.)
-        }
+        
     }
 }
