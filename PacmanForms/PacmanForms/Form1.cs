@@ -12,9 +12,18 @@ namespace PacmanForms
 {
     public partial class Form1 : Form
     {
+        Timer t;
+
         public Form1()
         {
             InitializeComponent();
+            t = new Timer();
+            t.Interval = 1;
+        }
+
+        private void t_Tick(object sender, EventArgs e)
+        {
+
         }
     }
 }
