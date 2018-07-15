@@ -37,14 +37,15 @@ namespace PacmanForms
             if (checkBound())
                 pacman.Move();
             else
-                pacman.SetVector(new int[] { 0, 1 });
+                pacman.Vector = 0;
 
         }
 
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        private void Form1_KeyPress(object sender, KeyEventArgs e)
         {
-            //if(e.KeyCode == Keys.Up) pacman.SetVector(new int[]{ 0, 1 });
-
+            if(e.KeyCode == Keys.Up)
+                pacman.Vector = {0, 1};
+            else if(e.KeyCode == Keys.do)
         }
     }
 }
