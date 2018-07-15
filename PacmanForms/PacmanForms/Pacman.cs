@@ -19,7 +19,7 @@ namespace PacmanForms
         int vectorX;
         int vectorY;
 
-        int speed = 2;
+        int speed = 1;
         public Pacman()
         {
             ChangeSize(20, 20);
@@ -27,6 +27,16 @@ namespace PacmanForms
 
             vectorX = 0;
             vectorY = 0;
+        }
+
+        public int GetVectorX()
+        {
+            return vectorX;
+        }
+
+        public int GetVectorY()
+        {
+            return vectorY;
         }
 
         public void Move()
