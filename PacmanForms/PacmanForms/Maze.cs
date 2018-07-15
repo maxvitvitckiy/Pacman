@@ -35,12 +35,28 @@ namespace PacmanForms
                { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 }
 
         };
-
-
+        
         public Maze()
         {
+            for (int i = 0; i < 21; i++)
+            {
+                for (int j = 0; j < 21; j++)
+                {
+                    if(mazeInt[i, j] == 1)
+                        walls[i, j] = new Rectangle(i*20,j*20,20,20);
+                }
+            }
 
+        }
 
+        public Rectangle[,] getRectanglesWall()
+        {
+            return walls;
+        }
+
+        public int this[int i, int j]
+        {
+            get { return mazeInt[i, j]; }
         }
 
 
