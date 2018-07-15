@@ -4,15 +4,17 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
 
 namespace PacmanForms
 {
     class Pacman
     {
-        private Bitmap pacmanImg = Properties.Resources.Pacman_pic;
+        private Bitmap pacmanImg = Properties.Resources.New_Piskel;        
 
         private Rectangle pacmanRect;
+
 
 
 
@@ -53,15 +55,50 @@ namespace PacmanForms
 
         public Bitmap GetPacmanImg()
         {
+            ChangeSize(20, 20);
             return pacmanImg;
         }
 
         public void SetPacmanImg(Bitmap newImg)
         {
-            pacmanImg = newImg;
-            ChangeSize(20, 20);
+            pacmanImg = newImg;            
         }
 
+        public Bitmap setAnimation(byte k)
+        {
+            if (k % 4 == 0)
+            {
+                SetPacmanImg(new Bitmap(Properties.Resources.sprite_0));
+            }
+            else if(k % 4 == 1)
+            {
+                SetPacmanImg(new Bitmap(Properties.Resources.sprite_1));
+            }
+            else if (k % 4 == 2)
+            {
+                SetPacmanImg(new Bitmap(Properties.Resources.sprite_2));
+            }
+            else if (k % 4 == 3)
+            {
+                SetPacmanImg(new Bitmap(Properties.Resources.sprite_3));
+            }
+            setRotate();
+
+
+            return GetPacmanImg();
+        }
+
+
+        public void setRotate() {
+            if (vectorY ==1)
+              pacmanImg.RotateFlip(RotateFlipType.Rotate270FlipNone);
+            if (vectorY == -1)
+                pacmanImg.RotateFlip(RotateFlipType.Rotate90FlipNone);
+
+            if (vectorX == -1)
+                pacmanImg.RotateFlip(RotateFlipType.Rotate180FlipY);
+
+        }
 
 
         public void SetVectorX(int a)
