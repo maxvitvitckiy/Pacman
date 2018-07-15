@@ -14,6 +14,8 @@ namespace PacmanForms
 
         private Rectangle pacmanRect;
 
+
+
         int vectorX;
         int vectorY;
 
@@ -21,7 +23,7 @@ namespace PacmanForms
         public Pacman()
         {
             ChangeSize(20, 20);
-            pacmanRect = new Rectangle(0, 0, pacmanImg.Width, pacmanImg.Height);
+            pacmanRect = new Rectangle(200, 200, pacmanImg.Width, pacmanImg.Height);
 
             vectorX = 0;
             vectorY = 0;
@@ -30,8 +32,8 @@ namespace PacmanForms
         public void Move()
         {
             pacmanRect.X += speed * vectorX;
-            pacmanRect.Y += speed * vectorY;
-
+            pacmanRect.Y += -1 * speed * vectorY;
+            
         }
 
         public Rectangle GetRect()
@@ -44,6 +46,14 @@ namespace PacmanForms
             return pacmanImg;
         }
 
+        public void SetPacmanImg(Bitmap newImg)
+        {
+            pacmanImg = newImg;
+            ChangeSize(20, 20);
+        }
+
+
+
         public void SetVectorX(int a)
         {
             vectorX = a;
@@ -51,7 +61,7 @@ namespace PacmanForms
 
         public void SetVectorY(int a)
         {
-            vectorX = a;
+            vectorY = a;
         }
 
         private void ChangeSize(int x, int y)

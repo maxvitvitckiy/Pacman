@@ -63,6 +63,16 @@ namespace PacmanForms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Pacman_Closed {
+            get {
+                object obj = ResourceManager.GetObject("Pacman_Closed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Pacman_pic {
             get {
                 object obj = ResourceManager.GetObject("Pacman_pic", resourceCulture);
