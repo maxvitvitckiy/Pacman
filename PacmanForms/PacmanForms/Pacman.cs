@@ -9,8 +9,8 @@ namespace PacmanForms
 {
     class Pacman
     {
-        Bitmap pacman = new Bitmap(20,20);
-        Rectangle pacmanRectangle = new Rectangle(50, 50, 20, 20);
+        Bitmap pacmanImg = new Bitmap(20,20);
+        public Rectangle pacmanRectangle = new Rectangle(50, 50, 20, 20);
         Graphics g;
 
         int speed = 2;
@@ -19,18 +19,27 @@ namespace PacmanForms
 
         public Pacman()
         {
-            pacman = Properties.Resources.Pacman_pic;
+            pacmanImg = Properties.Resources.Pacman_pic;
             vector = new int[2] { 0, 0 };
 
+            g.DrawImage(pacmanImg, pacmanRectangle.X, pacmanRectangle.Y);
         }
 
         public void Move()
         {
             pacmanRectangle.X += speed * vector[0];
             pacmanRectangle.Y += speed * vector[1];
-            g.DrawImage(pacman, pacmanRectangle.X, pacmanRectangle.Y);
+            g.DrawImage(pacmanImg, pacmanRectangle.X, pacmanRectangle.Y);
         }
         
-
+        public int GetX()
+        {
+            return pacmanRectangle.X;
+        }
+        public int GetY()
+        {
+            return pacmanRectangle.Y;
+        }
+        public int Vector{ get; set; }
     }
 }
