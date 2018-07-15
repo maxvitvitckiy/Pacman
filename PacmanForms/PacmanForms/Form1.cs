@@ -14,6 +14,8 @@ namespace PacmanForms
     {
         Pacman pacman;
         Graphics g;
+        Maze m;
+        Rectangle[] recs;
 
         public Form1()
         {
@@ -21,10 +23,12 @@ namespace PacmanForms
             this.BackColor = Color.Black;
 
             pacman = new Pacman();
-            
+            m = new Maze();
             timer1.Interval = 20;
             timer1.Enabled = true;
             g = this.CreateGraphics();
+
+            recs = m.getMaze();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -37,6 +41,9 @@ namespace PacmanForms
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            for (int i = 0; i < recs.Length; i++)
+                g.DrawRectangle(Pens.Blue, recs[i]);
+
             g.DrawImage(pacman.GetPacmanImg(), pacman.GetRect());
         }
 
