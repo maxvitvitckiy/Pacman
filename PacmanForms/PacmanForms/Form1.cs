@@ -29,20 +29,33 @@ namespace PacmanForms
             timer2.Interval = 100;
             timer2.Enabled = true;
             g = this.CreateGraphics();
+           
+          //  Refresh();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
             CheckBorders();
             pacman.Move();
-            Refresh();
+            //  Invalidate(pacman.GetRect());
+            Invalidate(pacman.GetRect());
             g.DrawImage(pacman.GetPacmanImg(), pacman.GetRect());
 
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            PaintWalls();
             g.DrawImage(pacman.GetPacmanImg(), pacman.GetRect());
+        } 
+
+        private void PaintWalls()
+        {
+            foreach (Rectangle item in maze.getRectanglesWall())
+            {
+                g.FillRectangle(Brushes.Blue, item);
+            }
+                
         }
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
@@ -108,18 +121,18 @@ namespace PacmanForms
                 pacman.SetVectorX(0);
                 return;
             }
-            if ((pacman.GetRect().Top >= this.ClientSize.Height && pacman.GetVectorY() < 0) || (pacman.GetRect().Y <= 0 && pacman.GetVectorY() > 0))
+            if ((pacman.GetRect().Bottom >= this.ClientSize.Height && pacman.GetVectorY() < 0) || (pacman.GetRect().Y <= 0 && pacman.GetVectorY() > 0))
             {
                 pacman.SetVectorY(0);
                 return;
             }
 
-            if(maze[((pacman.GetRect().X / 21 )+ pacman.GetVectorX()), ((pacman.GetRect().Y / 21) + pacman.GetVectorY())] == 1)
-            {
-                pacman.SetVectorX(0);
-                pacman.SetVectorY(0);
-                return;
-            }
+            //if(maze[((pacman.GetRect().X / 21 )+ pacman.GetVectorX()), ((pacman.GetRect().Y / 21) + pacman.GetVectorY())] == 1)
+            //{
+            //    pacman.SetVectorX(0);
+            //    pacman.SetVectorY(0);
+            //    return;
+            //}
         }
 
         private void timer2_Tick(object sender, EventArgs e)

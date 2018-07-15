@@ -9,7 +9,7 @@ namespace PacmanForms
 {
     class Maze
     {
-        Rectangle[,] walls;
+        Rectangle[,] walls = new Rectangle[21,21];
         int[,] mazeInt = new int[21, 21] {
 
                { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
