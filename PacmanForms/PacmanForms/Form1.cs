@@ -24,7 +24,7 @@ namespace PacmanForms
             pacman = new Pacman();
             maze = new Maze();
 
-            timer1.Interval = 10;
+            timer1.Interval =50;
             timer1.Enabled = true;
             timer2.Interval = 100;
             timer2.Enabled = true;
@@ -35,10 +35,9 @@ namespace PacmanForms
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            CheckBorders();
-            pacman.Move();
-            //  Invalidate(pacman.GetRect());
             Invalidate(pacman.GetRect());
+            if()
+            pacman.Move();
             g.DrawImage(pacman.GetPacmanImg(), pacman.GetRect());
 
         }
@@ -86,6 +85,7 @@ namespace PacmanForms
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
+
             if (e.KeyCode == Keys.Right)
             {
                 pacman.SetVectorX(1);

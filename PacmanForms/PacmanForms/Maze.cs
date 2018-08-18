@@ -49,6 +49,13 @@ namespace PacmanForms
 
         }
 
+        public bool CheckBorderds(int x, int y)
+        {
+            if (mazeInt[x / 21, y / 21] == 1) return false;
+
+            return true;
+        }
+
         public Rectangle[,] getRectanglesWall()
         {
             return walls;
