@@ -87,8 +87,7 @@ namespace PacmanForms
 
             return GetPacmanImg();
         }
-
-
+        
         public void setRotate() {
             if (vectorY ==1)
               pacmanImg.RotateFlip(RotateFlipType.Rotate270FlipNone);
@@ -99,8 +98,7 @@ namespace PacmanForms
                 pacmanImg.RotateFlip(RotateFlipType.Rotate180FlipY);
 
         }
-
-
+        
         public void SetVectorX(int a)
         {
             vectorX = a;
