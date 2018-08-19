@@ -5,13 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace PacmanForms
+namespace Pacman_Test
 {
     class Maze
     {
-        int width = 23, height = 23;
-        Rectangle[,] walls = new Rectangle[21,21];
-        int[,] mazeInt = new int[21, 21] {
+        int width = 25, height = 25;
+        List<Rectangle> walls = new List<Rectangle>();
+        List<Rectangle> path = new List<Rectangle>();
+
+        int[,] mazeInt = {
 
                { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
                { 1,1,1,1,0,0,1,1,0,0,1,0,0,1,1,0,0,1,1,0,1 },
@@ -34,20 +36,26 @@ namespace PacmanForms
                { 1,0,0,1,1,1,1,1,0,0,1,0,0,1,1,1,1,1,0,0,1 },
                { 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
                { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 }
-
         };
         
         public Maze()
         {
-            for (int i = 0; i < 21; i++)
+            for (int i = 0; i < mazeInt.GetLength(0); i++)
             {
-                for (int j = 0; j < 21; j++)
+                for (int j = 0; j < mazeInt.GetLength(1); j++)
                 {
                     if (mazeInt[i, j] == 1)
-                        walls[i, j] = new Rectangle(j * width, i * height, width, height);
+                        walls.Add(new Rectangle(j * width, i * height, width, height));                    
+                    else
+                        path.Add(new Rectangle(j * width, i * height, width, height));
                 }
             }
 
+        }
+
+        public Size GetSize()
+        {
+            return new Size(mazeInt.GetLength(0) * width + 17, mazeInt.GetLength(1) * height + 40);
         }
 
         public bool CheckBorderds(int x, int y)
@@ -57,9 +65,14 @@ namespace PacmanForms
             return true;
         }
 
-        public Rectangle[,] getRectanglesWall()
+        public List<Rectangle> getRectanglesWall()
         {
             return walls;
+        }
+
+        public List<Rectangle> getRectanglePath()
+        {
+            return path;
         }
 
         public int this[int i, int j]

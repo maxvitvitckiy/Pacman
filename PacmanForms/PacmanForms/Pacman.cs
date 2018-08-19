@@ -25,7 +25,7 @@ namespace PacmanForms
         public Pacman()
         {
             ChangeSize(20, 20);
-            pacmanRect = new Rectangle(200, 200, pacmanImg.Width, pacmanImg.Height);
+            pacmanRect = new Rectangle(100, 100, pacmanImg.Width, pacmanImg.Height);
 
             vectorX = 0;
             vectorY = 0;

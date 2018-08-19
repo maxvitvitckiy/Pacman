@@ -24,7 +24,7 @@ namespace PacmanForms
             pacman = new Pacman();
             maze = new Maze();
 
-            timer1.Interval =50;
+            timer1.Interval =20;
             timer1.Enabled = true;
             timer2.Interval = 100;
             timer2.Enabled = true;
@@ -35,9 +35,9 @@ namespace PacmanForms
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            Invalidate(pacman.GetRect());
-            if()
+            CheckBorders();
             pacman.Move();
+            Invalidate(pacman.GetRect());
             g.DrawImage(pacman.GetPacmanImg(), pacman.GetRect());
 
         }
@@ -54,7 +54,7 @@ namespace PacmanForms
             {
                 g.FillRectangle(Brushes.Blue, item);
             }
-                
+
         }
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
@@ -116,23 +116,24 @@ namespace PacmanForms
 
         private void CheckBorders()
         {
-            if ((pacman.GetRect().Right >= this.ClientSize.Width && pacman.GetVectorX() > 0) || (pacman.GetRect().X <= 0 && pacman.GetVectorX() < 0))
+            if ((pacman.GetRect().Right + pacman.GetVectorX()>= this.ClientSize.Width && pacman.GetVectorX() > 0) || (pacman.GetRect().X <= 0 && pacman.GetVectorX() < 0))
             {
                 pacman.SetVectorX(0);
                 return;
             }
-            if ((pacman.GetRect().Bottom >= this.ClientSize.Height && pacman.GetVectorY() < 0) || (pacman.GetRect().Y <= 0 && pacman.GetVectorY() > 0))
+            if ((pacman.GetRect().Bottom  + pacman.GetVectorY()>= this.ClientSize.Height && pacman.GetVectorY() < 0) || (pacman.GetRect().Y <= 0 && pacman.GetVectorY() > 0))
             {
                 pacman.SetVectorY(0);
                 return;
             }
 
-            //if(maze[((pacman.GetRect().X / 21 )+ pacman.GetVectorX()), ((pacman.GetRect().Y / 21) + pacman.GetVectorY())] == 1)
-            //{
-            //    pacman.SetVectorX(0);
-            //    pacman.SetVectorY(0);
-            //    return;
-            //}
+
+            if (maze[(((pacman.GetRect().X ) / 23) + pacman.GetVectorX()), (((pacman.GetRect().Y) / 23) - pacman.GetVectorY())] == 1)
+            {
+                pacman.SetVectorX(0);
+                pacman.SetVectorY(0);
+                return;
+            }
         }
 
         private void timer2_Tick(object sender, EventArgs e)
